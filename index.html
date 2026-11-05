@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventRent A/S (DUMMY-SIDE)</title>
+<style>
+  :root { --main:#1a237e; --accent:#ffb300; --bg:#f4f5fb; --text:#1c1f33; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+  .dummy-banner { background:#b71c1c; color:#fff; text-align:center; padding:.5rem 1rem; font-weight:600; font-size:.9rem; }
+  header { background:var(--main); color:#fff; padding:1rem 2rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; }
+  header h1 span { color:var(--accent); }
+  nav a { color:#fff; text-decoration:none; padding:.5rem 1rem; border-radius:4px; }
+  nav a:hover { background:rgba(255,255,255,.15); }
+  .hero { background:linear-gradient(135deg,#1a237e,#5c6bc0); color:#fff; text-align:center; padding:4rem 1rem; }
+  .hero h2 { font-size:2.4rem; margin-bottom:.5rem; }
+  .hero p { margin-bottom:1.5rem; }
+  .btn { display:inline-block; background:var(--accent); color:#000; padding:.75rem 1.5rem; border-radius:4px; text-decoration:none; font-weight:600; border:0; cursor:pointer; font-size:1rem; }
+  main { max-width:1000px; margin:0 auto; padding:2rem 1rem; }
+  h3 { margin:1.5rem 0 1rem; font-size:1.5rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; }
+  .card { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,.1); }
+  .card .img { height:120px; background:#c5cae9; display:flex; align-items:center; justify-content:center; font-size:3rem; }
+  .card .body { padding:1rem; }
+  .card .price { color:var(--main); font-weight:700; margin-top:.25rem; }
+  form { background:#fff; padding:1.5rem; border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,.1); display:grid; gap:.75rem; max-width:500px; }
+  label { font-weight:600; font-size:.9rem; }
+  input, select, textarea { width:100%; padding:.5rem; border:1px solid #9fa8da; border-radius:4px; font:inherit; }
+  #resultat { margin-top:1rem; font-weight:600; color:#1b5e20; }
+  footer { background:var(--main); color:#c5cae9; text-align:center; padding:1.5rem; margin-top:2rem; font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="dummy-banner">⚠ DUMMY-SIDE – Testside til eksamen i Cloud Computing. Alt er fiktivt, og intet kan bestilles.</div>
+<header>
+  <h1>Event<span>Rent</span> A/S</h1>
+  <nav>
+    <a href="#udstyr">Udstyr</a>
+    <a href="#booking">Booking</a>
+    <a href="#om">Om os</a>
+  </nav>
+</header>
+<section class="hero">
+  <h2>Udstyr til konferencer, festivaler og messer</h2>
+  <p>Lyd, lys, scener og telte – udlejet til arrangementer i hele landet.</p>
+  <a class="btn" href="#booking">Send bookingforespørgsel</a>
+</section>
+<main>
+  <h3 id="udstyr">Udstyr (fiktive data)</h3>
+  <div class="grid">
+    <div class="card"><div class="img">🔊</div><div class="body"><strong>Lydanlæg, medium</strong><div class="price">1.500 kr./dag</div></div></div>
+    <div class="card"><div class="img">💡</div><div class="body"><strong>Lyspakke, scene</strong><div class="price">1.200 kr./dag</div></div></div>
+    <div class="card"><div class="img">🎪</div><div class="body"><strong>Festtelt 6x12 m</strong><div class="price">2.800 kr./dag</div></div></div>
+    <div class="card"><div class="img">🎤</div><div class="body"><strong>Trådløse mikrofoner (4 stk.)</strong><div class="price">600 kr./dag</div></div></div>
+    <div class="card"><div class="img">🪑</div><div class="body"><strong>Klapstole (50 stk.)</strong><div class="price">400 kr./dag</div></div></div>
+    <div class="card"><div class="img">📽️</div><div class="body"><strong>Projektor + lærred</strong><div class="price">750 kr./dag</div></div></div>
+  </div>
+
+  <h3 id="booking">Bookingforespørgsel (prototype)</h3>
+  <form id="bookingform">
+    <div><label for="navn">Navn</label><input id="navn" required></div>
+    <div><label for="udstyrvalg">Udstyr</label>
+      <select id="udstyrvalg"><option>Lydanlæg, medium</option><option>Lyspakke, scene</option><option>Festtelt 6x12 m</option><option>Projektor + lærred</option></select></div>
+    <div><label for="dato">Dato</label><input id="dato" type="date" required></div>
+    <button class="btn" type="submit">Send forespørgsel</button>
+    <div id="resultat" role="status"></div>
+  </form>
+  <p style="margin-top:.5rem;font-size:.85rem">Prototype: formularen sender ingen data. I produktion ville den kalde et API (fx API Gateway + Lambda → DynamoDB/RDS).</p>
+
+  <h3 id="om">Om os</h3>
+  <p>EventRent A/S er en fiktiv virksomhed med 18 medarbejdere, der udlejer udstyr til arrangementer. Siden er en prototype lavet til eksamen i Cloud Computing.</p>
+</main>
+<footer>© 2026 EventRent A/S (fiktiv) – Dummy-side til undervisningsbrug</footer>
+<script>
+  document.getElementById('bookingform').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('resultat').textContent =
+      'Tak! (Dummy) Ingen data er sendt eller gemt.';
+  });
+</script>
+</body>
+</html>
