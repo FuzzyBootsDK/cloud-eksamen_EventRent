@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="DUMMY website for a cloud computing exam. Fictional company, no real data.">
 <title>EventRent A/S (DUMMY-SIDE)</title>
 <style>
   :root { --main:#1a237e; --accent:#ffb300; --bg:#f4f5fb; --text:#1c1f33; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
-  .dummy-banner { background:#b71c1c; color:#fff; text-align:center; padding:.5rem 1rem; font-weight:600; font-size:.9rem; }
+  .dummy-banner { position:sticky; top:0; z-index:100; background:#b71c1c; color:#fff; text-align:center; padding:.6rem 1rem; font-weight:700; font-size:.95rem; border-bottom:3px solid #ffeb3b; }
+  .watermark { position:fixed; inset:0; pointer-events:none; z-index:50; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .watermark span { transform:rotate(-30deg); font-size:min(14vw,9rem); font-weight:900; color:rgba(183,28,28,.10); white-space:nowrap; }
   header { background:var(--main); color:#fff; padding:1rem 2rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; }
   header h1 span { color:var(--accent); }
   nav a { color:#fff; text-decoration:none; padding:.5rem 1rem; border-radius:4px; }
@@ -32,9 +36,10 @@
 </style>
 </head>
 <body>
-<div class="dummy-banner">⚠ DUMMY-SIDE – Testside til eksamen i Cloud Computing. Alt er fiktivt, og intet kan bestilles.</div>
+<div class="watermark" aria-hidden="true"><span>DUMMY</span></div>
+<div class="dummy-banner" role="alert">⚠ DUMMY-SIDE / DUMMY WEBSITE – Testside til eksamen i Cloud Computing. Alt er fiktivt, ingen rigtig virksomhed, og intet kan bestilles. · Test page for a cloud course: everything is fictional and nothing can be ordered. Do not enter real personal data.</div>
 <header>
-  <h1>Event<span>Rent</span> A/S</h1>
+  <h1>Event<span>Rent</span> A/S <small style="font-size:.6em;color:#ffcdd2">(DUMMY)</small></h1>
   <nav>
     <a href="#udstyr">Udstyr</a>
     <a href="#booking">Booking</a>
@@ -57,7 +62,7 @@
     <div class="card"><div class="img">📽️</div><div class="body"><strong>Projektor + lærred</strong><div class="price">750 kr./dag</div></div></div>
   </div>
 
-  <h3 id="booking">Bookingforespørgsel (prototype)</h3>
+  <h3 id="booking">Bookingforespørgsel (DUMMY-prototype – indtast ikke rigtige oplysninger)</h3>
   <form id="bookingform">
     <div><label for="navn">Navn</label><input id="navn" required></div>
     <div><label for="udstyrvalg">Udstyr</label>
@@ -71,7 +76,7 @@
   <h3 id="om">Om os</h3>
   <p>EventRent A/S er en fiktiv virksomhed med 18 medarbejdere, der udlejer udstyr til arrangementer. Siden er en prototype lavet til eksamen i Cloud Computing.</p>
 </main>
-<footer>© 2026 EventRent A/S (fiktiv) – Dummy-side til undervisningsbrug</footer>
+<footer>© 2026 EventRent A/S (fiktiv) – DUMMY-SIDE til undervisningsbrug. Ingen rigtig virksomhed. / DUMMY website for teaching – not a real company.</footer>
 <script>
   document.getElementById('bookingform').addEventListener('submit', function (e) {
     e.preventDefault();
