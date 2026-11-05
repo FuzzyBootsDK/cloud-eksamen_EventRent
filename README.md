@@ -53,3 +53,9 @@ curl.exe -I https://<host>
 - HTTPS gennemtvinges (redirect-to-https), kryptering i hvile (SSE-S3), versionering aktiveret (simpel genetablering).
 - Ingen persondata gemmes i prototypen.
 - Omkostning: stort set 0 kr. ved lav trafik (free tier); slet stacken efter brug.
+
+## Diagrammer
+
+- [Prototype (implementeret)](diagrams/arkitektur-prototype.svg)
+- [Produktion (designforslag)](diagrams/arkitektur-produktion.svg)
+- [Disposition](DISPOSITION.md)

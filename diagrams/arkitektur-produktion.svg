@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" font-family="Segoe UI, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#37474f"/></marker>
+  </defs>
+  <rect width="1100" height="700" fill="#ffffff"/>
+  <text x="550" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1a237e">EventRent – FORESLÅET PRODUKTIONSARKITEKTUR (designforslag)</text>
+  <text x="550" y="48" text-anchor="middle" fill="#455a64">Kun delvist bygget i prototypen: CloudFront + S3 + container (markeret med ✔)</text>
+
+  <!-- Eksterne aktører -->
+  <rect x="20" y="110" width="120" height="60" rx="8" fill="#e8eaf6" stroke="#1a237e"/>
+  <text x="80" y="136" text-anchor="middle" font-weight="700">Kunder</text>
+  <text x="80" y="154" text-anchor="middle" font-size="11">Internet, HTTPS</text>
+
+  <rect x="20" y="470" width="120" height="70" rx="8" fill="#e8eaf6" stroke="#1a237e"/>
+  <text x="80" y="496" text-anchor="middle" font-weight="700">Medarbejdere</text>
+  <text x="80" y="514" text-anchor="middle" font-size="11">kontor + hjemme/felt</text>
+  <text x="80" y="530" text-anchor="middle" font-size="11">MFA</text>
+
+  <!-- Edge -->
+  <rect x="175" y="85" width="220" height="130" rx="10" fill="#fff8e1" stroke="#ff8f00" stroke-width="2"/>
+  <text x="185" y="105" font-weight="700" fill="#e65100">Edge / global</text>
+  <text x="190" y="130" font-size="12">Route 53 (DNS)</text>
+  <text x="190" y="150" font-size="12">ACM (TLS-certifikat)</text>
+  <text x="190" y="170" font-size="12">AWS WAF</text>
+  <text x="190" y="190" font-size="12" font-weight="700">CloudFront ✔</text>
+
+  <!-- S3 statisk -->
+  <rect x="430" y="85" width="170" height="70" rx="8" fill="#fff" stroke="#2e7d32"/>
+  <text x="515" y="112" text-anchor="middle" font-weight="700">S3 – statisk site ✔</text>
+  <text x="515" y="132" text-anchor="middle" font-size="11">privat, OAC, versionering</text>
+
+  <!-- VPC -->
+  <rect x="430" y="180" width="650" height="470" rx="10" fill="#f1f8e9" stroke="#558b2f" stroke-width="2"/>
+  <text x="445" y="202" font-weight="700" fill="#33691e">VPC 10.0.0.0/16 – eu-north-1, to Availability Zones (a + b)</text>
+
+  <!-- Public subnets -->
+  <rect x="450" y="215" width="610" height="100" rx="8" fill="#fffde7" stroke="#f9a825"/>
+  <text x="460" y="234" font-size="12" font-weight="700">Offentlige subnets (10.0.1.0/24, 10.0.2.0/24)</text>
+  <rect x="470" y="248" width="250" height="52" rx="6" fill="#fff" stroke="#f9a825"/>
+  <text x="595" y="270" text-anchor="middle" font-weight="700">Application Load Balancer</text>
+  <text x="595" y="288" text-anchor="middle" font-size="11">443 → 8080, health checks</text>
+  <rect x="780" y="248" width="250" height="52" rx="6" fill="#fff" stroke="#f9a825"/>
+  <text x="905" y="270" text-anchor="middle" font-weight="700">NAT Gateway</text>
+  <text x="905" y="288" text-anchor="middle" font-size="11">udgående trafik fra private subnets</text>
+
+  <!-- App subnets -->
+  <rect x="450" y="335" width="610" height="110" rx="8" fill="#e3f2fd" stroke="#1565c0"/>
+  <text x="460" y="354" font-size="12" font-weight="700">Private app-subnets (10.0.11.0/24, 10.0.12.0/24)</text>
+  <rect x="470" y="368" width="250" height="62" rx="6" fill="#fff" stroke="#1565c0"/>
+  <text x="595" y="390" text-anchor="middle" font-weight="700">ECS Fargate – booking-API ✔*</text>
+  <text x="595" y="408" text-anchor="middle" font-size="11">containere, autoskalering (CPU/anmodninger)</text>
+  <text x="595" y="422" text-anchor="middle" font-size="10">*container-teknik vist i prototype (nginx)</text>
+  <rect x="780" y="368" width="250" height="62" rx="6" fill="#fff" stroke="#1565c0"/>
+  <text x="905" y="390" text-anchor="middle" font-weight="700">ECR – container-images</text>
+  <text x="905" y="408" text-anchor="middle" font-size="11">scannede images, CI/CD fra GitHub</text>
+
+  <!-- DB subnets -->
+  <rect x="450" y="465" width="610" height="90" rx="8" fill="#fce4ec" stroke="#c2185b"/>
+  <text x="460" y="484" font-size="12" font-weight="700">Private database-subnets (10.0.21.0/24, 10.0.22.0/24) – ingen internetadgang</text>
+  <rect x="470" y="496" width="250" height="48" rx="6" fill="#fff" stroke="#c2185b"/>
+  <text x="595" y="516" text-anchor="middle" font-weight="700">RDS (multi-AZ)</text>
+  <text x="595" y="533" text-anchor="middle" font-size="11">kunder + bookinger, krypteret (KMS)</text>
+  <rect x="780" y="496" width="250" height="48" rx="6" fill="#fff" stroke="#c2185b"/>
+  <text x="905" y="516" text-anchor="middle" font-weight="700">Interne filer (S3 privat)</text>
+  <text x="905" y="533" text-anchor="middle" font-size="11">kontrakter, billeder – versionering</text>
+
+  <!-- Drift & sikkerhed -->
+  <rect x="450" y="570" width="610" height="65" rx="8" fill="#ede7f6" stroke="#5e35b1"/>
+  <text x="460" y="590" font-size="12" font-weight="700">Drift og sikkerhed (tværgående)</text>
+  <text x="460" y="610" font-size="11">AWS Backup (daglig, 2. region) · CloudWatch alarmer/logs · CloudTrail · KMS · Security Groups (least privilege)</text>
+  <text x="460" y="626" font-size="11">IAM Identity Center (SSO + MFA) · Infrastructure as Code (CloudFormation ✔)</text>
+
+  <!-- Medarbejder-adgang -->
+  <rect x="175" y="470" width="220" height="70" rx="8" fill="#fff" stroke="#5e35b1"/>
+  <text x="285" y="496" text-anchor="middle" font-weight="700">Sikker adgang</text>
+  <text x="285" y="514" text-anchor="middle" font-size="11">IAM Identity Center (SSO+MFA)</text>
+  <text x="285" y="530" text-anchor="middle" font-size="11">Client VPN / SSM, ingen åbne SSH</text>
+
+  <!-- Hovedkontor -->
+  <rect x="175" y="580" width="220" height="55" rx="8" fill="#eceff1" stroke="#37474f"/>
+  <text x="285" y="604" text-anchor="middle" font-weight="700">Hovedkontor (lokal)</text>
+  <text x="285" y="621" text-anchor="middle" font-size="11">gammel server udfases</text>
+
+  <!-- Pile -->
+  <line x1="140" y1="140" x2="173" y2="140" stroke="#37474f" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="395" y1="130" x2="428" y2="120" stroke="#37474f" stroke-width="2" marker-end="url(#a)"/>
+  <text x="412" y="112" font-size="10">statisk</text>
+  <path d="M395 190 L430 190 L430 270 L468 272" fill="none" stroke="#37474f" stroke-width="2" marker-end="url(#a)"/>
+  <text x="402" y="232" font-size="10">/api</text>
+  <line x1="595" y1="300" x2="595" y2="366" stroke="#37474f" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="595" y1="430" x2="595" y2="494" stroke="#37474f" stroke-width="2" marker-end="url(#a)"/>
+  <text x="603" y="465" font-size="10">3306/5432</text>
+  <line x1="780" y1="400" x2="722" y2="400" stroke="#37474f" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+  <line x1="140" y1="505" x2="173" y2="505" stroke="#37474f" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M395 505 L430 505 L448 430" fill="none" stroke="#5e35b1" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+  <line x1="285" y1="540" x2="285" y2="578" stroke="#37474f" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+  <text x="295" y="562" font-size="10">migrering</text>
+</svg>
